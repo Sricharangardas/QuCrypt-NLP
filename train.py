@@ -21,7 +21,7 @@ class EncryptedDataset(Dataset):
         return len(self.texts)
 
 # Load data
-df = pd.read_csv('data/encrypted_dataset.csv')
+df = pd.read_csv('C:/Users/91934/OneDrive/Documents/GitHub/qbert_project/data/encrypted_dataset.csv')
 dataset = EncryptedDataset(df)
 loader = DataLoader(dataset, batch_size=8, shuffle=True)
 
@@ -38,3 +38,7 @@ for epoch in range(3):
         loss.backward()
         optimizer.step()
     print(f"Epoch {epoch+1}, Loss: {loss.item()}")
+
+import torch
+torch.save(model.state_dict(), "qbert_model.pth")
+

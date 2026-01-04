@@ -1,0 +1,7 @@
+# Ignore trained model files
+qbert_model.pth
+*.pth
+
+# Python cache
+__pycache__/
+*.pyc

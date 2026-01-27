@@ -3,6 +3,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import torch
+import pandas as pd
 from models.qbert_model import QBertClassifier
 from quantum.quantum_embedding import quantum_embed
 
@@ -11,13 +12,23 @@ model = QBertClassifier()
 model.load_state_dict(torch.load("qbert_model.pth", map_location="cpu"))
 model.eval()
 
-# Test encrypted input
-text = "The █████ discussed █████ at ████"
+# Load dataset
+df = pd.read_csv("data/encrypted_dataset.csv")
 
-tokens = quantum_embed(text)
+print("\n--- Inference Results ---\n")
 
-with torch.no_grad():
-    output = model(tokens["input_ids"], tokens["attention_mask"])
-    prediction = torch.argmax(output, dim=1)
+for index, row in df.iterrows():
+    text = row["text"]
 
-print("Predicted Class:", prediction.item())
+    tokens = quantum_embed(text)
+
+    with torch.no_grad():
+        output = model(tokens["input_ids"], tokens["attention_mask"])
+        prediction = torch.argmax(output, dim=1).item()
+
+    label_name = "Normal" if prediction == 0 else "Threat"
+
+    print(f"Input: {text}")
+    print(f"Predicted Class: {prediction} ({label_name})")
+    print("-" * 50)
+

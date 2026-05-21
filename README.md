@@ -1,54 +1,244 @@
-# QuCrypt-NLP
+# Q-BERT: Encrypted Text Threat Detection using Transformer-Based NLP
 
-A comprehensive Natural Language Processing (NLP) project leveraging quantum computing principles and cryptographic techniques for advanced text analysis and processing.
+## 📌 Overview
+Q-BERT is a transformer-based NLP system that analyzes encrypted or redacted text and predicts whether the communication is **Normal** or a **Threat** without decrypting sensitive information.
 
-## 📋 Table of Contents
+The project uses a fine-tuned **BERT model** with a custom classification layer to learn contextual patterns from encrypted text.
 
-- [Overview](#overview)
-- [Features](#features)
-- [Technology Stack](#technology-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
+---
 
-## Overview
+## 🚀 Features
+- 🔐 Analyze encrypted or masked text
+- 🤖 Transformer-based threat detection
+- ⚡ Real-time prediction using Flask API
+- 🌐 Interactive frontend using HTML, CSS, JavaScript
+- 🧠 Privacy-preserving NLP approach
+- 📊 Binary classification:
+  - `0 → Normal Communication`
+  - `1 → Threat Communication`
 
-QuCrypt-NLP combines cutting-edge NLP methodologies with quantum computing concepts and cryptographic protocols to deliver robust text processing capabilities. This project demonstrates the intersection of quantum computing, cryptography, and machine learning.
+---
 
-## ✨ Features
+## 🧩 System Architecture
 
-- **Advanced NLP Processing**: State-of-the-art natural language understanding and processing
-- **Quantum-Inspired Algorithms**: Leverages quantum computing principles for enhanced computational efficiency
-- **Cryptographic Security**: Implements secure data handling and encryption protocols
-- **Interactive Web Interface**: User-friendly dashboard for visualizing results
-- **Scalable Architecture**: Designed for handling large-scale text datasets
+```text
+User Input
+    ↓
+Tokenization
+    ↓
+Embeddings (BERT)
+    ↓
+Transformer Processing (Q-BERT)
+    ↓
+Classification Layer
+    ↓
+Prediction Output
+```
 
-## 🛠️ Technology Stack
+---
 
-- **Backend**: Python (49.4%)
-  - NLP libraries and quantum algorithm implementations
-  - Core processing and data handling
-  
-- **Frontend**: 
-  - JavaScript (15.5%) - Interactive client-side logic
-  - HTML (14.6%) - Page structure
-  - CSS (20.5%) - Styling and responsive design
-  
-- **Type**: Full-stack web application
+## 🛠️ Tech Stack
 
-## 📦 Installation
+| Component | Technology |
+|----------|------------|
+| Programming Language | Python |
+| ML Framework | PyTorch |
+| NLP Model | BERT (Transformers) |
+| Backend | Flask |
+| Frontend | HTML, CSS, JavaScript |
+| Dataset | CSV |
+| Version Control | Git & GitHub |
 
-### Prerequisites
+---
 
-- Python 3.8 or higher
-- Node.js (optional, for frontend development)
-- pip package manager
+## 📂 Project Structure
 
-### Steps
+```text
+qbert_project/
+│
+├── app.py
+├── train.py
+├── requirements.txt
+├── qbert_model.pth
+│
+├── data/
+│   └── encrypted_dataset.csv
+│
+├── models/
+│   └── qbert_model.py
+│
+├── quantum/
+│   └── quantum_embedding.py
+│
+├── templates/
+│   └── index.html
+│
+├── static/
+│   ├── style.css
+│   └── script.js
+│
+└── app/
+    └── inference.py
+```
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Sricharangardas/QuCrypt-NLP.git
-   cd QuCrypt-NLP
+---
+
+## 📊 Dataset
+The dataset consists of encrypted or redacted sentences labeled as:
+
+| Label | Meaning |
+|------|---------|
+| 0 | Normal Communication |
+| 1 | Threat Communication |
+
+### Example Dataset
+
+```text
+"The █████ discussed █████ at ████" → 1
+"Routine █████ update completed" → 0
+```
+
+---
+
+## ⚙️ Installation
+
+### 1️⃣ Clone Repository
+
+```bash
+git clone https://github.com/Sricharangardas/QuCrypt-NLP.git
+cd QuCrypt-NLP
+```
+
+---
+
+### 2️⃣ Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### Activate Environment
+
+#### Windows
+```bash
+venv\Scripts\activate
+```
+
+#### Linux / Mac
+```bash
+source venv/bin/activate
+```
+
+---
+
+### 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## ▶️ Train the Model
+
+```bash
+python train.py
+```
+
+### Example Training Output
+
+```text
+Epoch 1 Loss: 0.706
+Epoch 2 Loss: 0.509
+Epoch 3 Loss: 0.366
+```
+
+---
+
+## 🌐 Run the Web Application
+
+```bash
+python app.py
+```
+
+Open browser:
+
+```text
+http://127.0.0.1:5000
+```
+
+---
+
+## 🧪 Example Predictions
+
+| Input Text | Prediction |
+|-----------|-----------|
+| The █████ discussed █████ at ████ | Threat |
+| Encrypted █████ operation scheduled at ████ | Threat |
+| Routine █████ update completed successfully | Normal |
+| █████ meeting summary recorded and archived | Normal |
+
+---
+
+## 🔍 How It Works
+
+1. User enters encrypted or redacted text
+2. Text is tokenized using BERT tokenizer
+3. Tokens are converted into embeddings
+4. Transformer model analyzes contextual patterns
+5. Classification layer predicts:
+   - Normal Communication
+   - Threat Communication
+
+---
+
+## 🎯 Real-Life Applications
+- Defense encrypted communication analysis
+- Privacy-preserving surveillance systems
+- Redacted legal document analysis
+- Corporate insider threat monitoring
+- Secure intelligence systems
+
+---
+
+## ⚠️ Limitations
+- Binary classification only
+- Depends on training dataset quality
+- Uses simulated encrypted text
+- Does not categorize threat type
+
+---
+
+## 🚀 Future Scope
+- Multi-class threat classification
+- Real encrypted communication analysis
+- Quantum embedding integration
+- Cloud deployment optimization
+- Larger encrypted datasets
+
+---
+
+## 👨‍💻 Team Roles
+
+### Member 1
+- Model development
+- Dataset preparation
+- Training and evaluation
+
+### Member 2
+- Backend development
+- Flask API integration
+
+### Member 3
+- Frontend development
+- Deployment and UI design
+
+---
+
+## 📜 Conclusion
+Q-BERT demonstrates that encrypted or redacted text can be analyzed effectively using transformer-based NLP without revealing sensitive information, enabling privacy-preserving threat detection.
+
+---
+
+## 📧 Contact
+- GitHub: https://github.com/Sricharangardas

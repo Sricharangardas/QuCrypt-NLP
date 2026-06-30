@@ -3,6 +3,7 @@ from torch.utils.data import DataLoader, Dataset
 from models.qbert_model import QBertClassifier
 from quantum.quantum_embedding import quantum_embed
 import pandas as pd
+import os
 
 class EncryptedDataset(Dataset):
     def __init__(self, df):
@@ -21,7 +22,9 @@ class EncryptedDataset(Dataset):
         return len(self.texts)
 
 # Load data
-df = pd.read_csv('C:/Users/91934/OneDrive/Documents/GitHub/qbert_project/data/encrypted_dataset.csv')
+base_dir = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(base_dir, 'data', 'encrypted_dataset.csv')
+df = pd.read_csv(csv_path)
 dataset = EncryptedDataset(df)
 loader = DataLoader(dataset, batch_size=8, shuffle=True)
 

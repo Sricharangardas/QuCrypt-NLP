@@ -7,7 +7,10 @@ def simple_encrypt(text, key=7):
 # Redact some keywords
 def redact_text(text):
     words = text.split()
-    num_to_redact = random.randint(1, len(words)//2)
-    for i in random.sample(range(len(words)), num_to_redact):
+    if not words:
+        return text
+    # Redact at least 1 word, up to half the words
+    num_to_redact = random.randint(1, max(1, len(words) // 2))
+    for i in random.sample(range(len(words)), min(len(words), num_to_redact)):
         words[i] = '[REDACTED]'
     return ' '.join(words)
